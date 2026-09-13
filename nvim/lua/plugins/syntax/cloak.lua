@@ -1,0 +1,23 @@
+return {
+  "laytan/cloak.nvim",
+  event = "VeryLazy",
+  keys = {
+    { "<leader>uc", "<cmd>CloakToggle<cr>", desc = "Toggle Cloak" },
+  },
+  config = function()
+    require("cloak").setup({
+      enabled = true,
+      cloak_character = "*",
+      highlight_group = "Comment",
+      cloak_length = nil,
+      try_all_patterns = true,
+      cloak_telescope = true,
+      patterns = {
+        {
+          file_pattern = ".env*",
+          cloak_pattern = "=.+",
+        },
+      },
+    })
+  end,
+}
