@@ -1,0 +1,17 @@
+{
+  "/mnt/code/uhasselt/compilers": {
+    "name": "Compilers",
+    "description": "Course Compilers",
+    "command": "make && ./build/main ./testfiles/test.swift"
+  },
+  "E:\\uhasselt\\compilers": {
+    "name": "Compilers",
+    "description": "Course Compilers",
+    "command": "make && ./build/main"
+  },
+  "/mnt/code/uhasselt/imageproc": {
+    "name": "Image Processing",
+    "description": "Course Image Processing",
+    "command": "python WZ2.py"
+  }
+}
