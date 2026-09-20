@@ -39,26 +39,41 @@
         };
       });
 
-      devShells = eachSystem (system: {
-        # `nix develop`: nvim in this shell reads its config live from ./nvim,
-        # so edits are immediately reflected and already sit in this repo.
-        default = nixpkgs.legacyPackages.${system}.mkShellNoCC {
-          name = "nvim-config";
-          packages = [ self.packages.${system}.vanilla ];
-          shellHook = ''
-            root="$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")"
-            if [ ! -d "$root/nvim" ]; then
-              echo "nvim devshell: no $root/nvim directory, not linking config" >&2
-            else
-              confdir="$root/.direnv/nvim-config"
-              mkdir -p "$confdir"
-              ln -sfn "$root/nvim" "$confdir/nvim-nix"
-              export XDG_CONFIG_HOME="$confdir"
+      devShells = eachSystem (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          # Override XDG_CONFIG_HOME for nvim only; exporting it from the shellHook
+          # would leak it into the whole session and break fish, git, gh, ...
+          devNvim = pkgs.writeShellScriptBin "nvim" ''
+            if [ -n "''${NVIM_DEV_CONFIG_HOME:-}" ]; then
+              export NVIM_HOST_XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
+              export XDG_CONFIG_HOME="$NVIM_DEV_CONFIG_HOME"
               export NVIM_DEV_SHELL=1
             fi
+            exec ${self.packages.${system}.vanilla}/bin/nvim "$@"
           '';
-        };
-      });
+        in
+        {
+          # `nix develop`: nvim in this shell reads its config live from ./nvim,
+          # so edits are immediately reflected and already sit in this repo.
+          default = pkgs.mkShellNoCC {
+            name = "nvim-config";
+            packages = [ devNvim ];
+            shellHook = ''
+              root="$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")"
+              if [ ! -d "$root/nvim" ]; then
+                echo "nvim devshell: no $root/nvim directory, not linking config" >&2
+              else
+                confdir="$root/.direnv/nvim-config"
+                mkdir -p "$confdir"
+                ln -sfn "$root/nvim" "$confdir/nvim-nix"
+                export NVIM_DEV_CONFIG_HOME="$confdir"
+              fi
+            '';
+          };
+        }
+      );
 
       # for `nix fmt`
       formatter = eachSystem (system: treefmtEval.${system}.config.build.wrapper);

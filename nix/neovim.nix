@@ -49,7 +49,8 @@ let
 
     wrapperArgs = lib.escapeShellArgs (
       [
-        "--prefix"
+        # --suffix, not --prefix: the user's own tools win, these fill the gaps.
+        "--suffix"
         "PATH"
         ":"
         (lib.makeBinPath [ externalPackages ])
@@ -90,6 +91,8 @@ let
 
     find "$CONF" -maxdepth 1 -type l ! -e -delete
 
+    # Saved for config/host-env.lua to restore.
+    export NVIM_HOST_XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
     export XDG_CONFIG_HOME="$SHADOW"
   '';
 

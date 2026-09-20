@@ -5,6 +5,7 @@ vim.g.is_dev_shell = vim.fn.getenv("NVIM_DEV_SHELL") == "1"
 
 require("config.keymaps")
 require("config.lazy")
+require("config.host-env")
 require("config.options")
 require("config.autocmds")
 

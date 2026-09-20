@@ -29,7 +29,7 @@ return {
               icon = " ",
               key = "c",
               desc = "Config",
-              action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+              action = ":lua Snacks.dashboard.pick('files', {cwd = vim.g.nvim_config_dir})",
             },
             { icon = " ", key = "s", desc = "Restore Sessions", action = "<cmd>AutoSession search<CR>" },
             { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
