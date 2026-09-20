@@ -133,6 +133,18 @@ vim.diagnostic.config({
   end,
 })
 
+if vim.g.is_dev_shell then
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    once = true,
+    callback = function()
+      vim.schedule(function()
+        vim.notify("Config developer mode", vim.log.levels.WARN)
+      end)
+    end,
+  })
+end
+
 -- Disable spell checking for certain buffers by filetype or buffer name
 vim.api.nvim_create_autocmd("BufEnter", {
   group = vim.api.nvim_create_augroup("SpellCheckIgnoreLazy", { clear = true }),

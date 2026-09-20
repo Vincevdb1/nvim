@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?rev=c581273b8d5bdf1c6ce7e0a54da9841e6a763913";
 
+    systems.url = "github:nix-systems/default";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -34,6 +36,27 @@
         vanilla = import ./nix/neovim.nix {
           inherit inputs system;
           with-config = false;
+        };
+      });
+
+      devShells = eachSystem (system: {
+        # `nix develop`: nvim in this shell reads its config live from ./nvim,
+        # so edits are immediately reflected and already sit in this repo.
+        default = nixpkgs.legacyPackages.${system}.mkShellNoCC {
+          name = "nvim-config";
+          packages = [ self.packages.${system}.vanilla ];
+          shellHook = ''
+            root="$(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")"
+            if [ ! -d "$root/nvim" ]; then
+              echo "nvim devshell: no $root/nvim directory, not linking config" >&2
+            else
+              confdir="$root/.direnv/nvim-config"
+              mkdir -p "$confdir"
+              ln -sfn "$root/nvim" "$confdir/nvim-nix"
+              export XDG_CONFIG_HOME="$confdir"
+              export NVIM_DEV_SHELL=1
+            fi
+          '';
         };
       });
 

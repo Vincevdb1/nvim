@@ -30,6 +30,18 @@ return {
       return vim.fn.winwidth(0) > 100
     end
 
+    -- Flag the instance started from this repo's `nix develop` shell, which
+    -- reads its config live from ./nvim instead of the nix store copy.
+    local dev_mode = {
+      function()
+        return " [DEVELOPING]"
+      end,
+      cond = function()
+        return vim.g.is_dev_shell
+      end,
+      color = { fg = "#FF5555" },
+    }
+
     local diagnostics = {
       "diagnostics",
       sources = { "nvim_diagnostic" },
@@ -195,6 +207,7 @@ return {
             icon = "",
             color = { fg = "#FFA500", bg = "None" },
           },
+          dev_mode,
         },
         lualine_c = {
           diff,
