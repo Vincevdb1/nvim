@@ -57,7 +57,7 @@
       vscode-langservers-extracted # html, css, ...
       yaml-language-server
     ]
-    ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+    ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       pkgs.fswatch # https://github.com/neovim/neovim/pull/27347
     ];
 
