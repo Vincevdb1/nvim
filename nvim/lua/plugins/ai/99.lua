@@ -8,8 +8,18 @@ return {
     -- logging mechanisms within 99.  This is for more debugging purposes
     local cwd = vim.uv.cwd()
     local basename = vim.fs.basename(cwd)
+
+    local function ensure_tmp_gitignore()
+      local tmp_dir = vim.fn.expand("./tmp")
+      vim.fn.mkdir(tmp_dir, "p")
+      local gitignore = tmp_dir .. "/.gitignore"
+      if vim.fn.filereadable(gitignore) == 0 then
+        vim.fn.writefile({ "*" }, gitignore)
+      end
+    end
+
     _99.setup({
-      provider = _99.Providers.GeminiCLIProvider,  -- default: OpenCodeProvider
+      provider = _99.Providers.ClaudeCodeProvider,  -- default: OpenCodeProvider
       logger = {
         level = _99.DEBUG,
         path = "/tmp/" .. basename .. ".99.debug",
@@ -80,6 +90,7 @@ return {
     -- likely ill add a mode check and assert on required visual mode
     -- so just prepare for it now
     vim.keymap.set("v", "<leader>av", function()
+      ensure_tmp_gitignore()
       _99.visual()
     end, { desc = "99: Visual Selection" })
 
@@ -89,6 +100,7 @@ return {
     end, { desc = "99: Stop all requests" })
 
     vim.keymap.set("n", "<leader>as", function()
+      ensure_tmp_gitignore()
       _99.search()
     end, { desc = "99: Search" })
   end,
