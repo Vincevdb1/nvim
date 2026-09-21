@@ -149,22 +149,6 @@ return {
       end,
     }
 
-    local supermaven = {
-      function()
-        return " "
-      end,
-      color = function()
-        if not vim.g.supermaven_status then
-          return { fg = "#FF5555" }
-        end
-        local ok, api = pcall(require, "supermaven-nvim.api")
-        if ok and api.is_running() then
-          return { fg = "#699854" }
-        end
-        return { fg = "#AEB7D0" }
-      end,
-    }
-
     require("lualine").setup({
       options = {
         theme = function()
@@ -248,7 +232,6 @@ return {
             show_colors = true,
           },
           codeium,
-          supermaven,
           {
             "encoding",
             cond = hide_in_width,
