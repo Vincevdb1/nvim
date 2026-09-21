@@ -6,6 +6,7 @@
 }:
 let
   pkgs = import inputs.nixpkgs { inherit system; };
+  pkgsTools = import inputs.nixpkgs-tools { inherit system; };
   lib = pkgs.lib;
   appName = "nvim-nix";
 
@@ -18,7 +19,7 @@ let
   allPlugins = import ./plugins.nix { inherit inputs pkgs opts; };
 
   # Packages like lsps, linters or formatters ...
-  packages = import ./packages.nix { inherit pkgs; };
+  packages = import ./packages.nix { pkgs = pkgsTools; };
 
   # Consolidate all the packages in the same PATH to avoid multiple entries
   externalPackages = pkgs.buildEnv {

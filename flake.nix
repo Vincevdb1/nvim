@@ -3,6 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?rev=c581273b8d5bdf1c6ce7e0a54da9841e6a763913";
+    # Tracks latest nixpkgs for CLI tools, formatters, linters and LSPs,
+    # kept separate so they can update without bumping the neovim pin.
+    nixpkgs-tools.url = "github:NixOS/nixpkgs";
 
     systems.url = "github:nix-systems/default";
 
