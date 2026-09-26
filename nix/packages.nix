@@ -12,6 +12,7 @@
       ghostscript
       mermaid-cli
       imagemagick
+      npm
 
       # Formatters
       (lib.lowPrio gotools) # goimports (lowPrio because 'modernize' collides with gopls)
