@@ -91,18 +91,44 @@ return {
       end,
     }
 
-    local codeium = {
-      "codeium",
-      fmt = (function()
+    local function claude_state()
+      local auto = package.loaded["claude-complete.auto"]
+      local worker = package.loaded["claude-complete.worker"]
+      if not auto or not worker then
+        return "asleep"
+      elseif not auto.is_enabled() then
+        return "off"
+      end
+
+      local status = worker.status()
+      if status.disabled then
+        return "error"
+      elseif worker._internal.state.inflight then
+        return "waiting"
+      elseif not status.running or not status.last_latency_ms then
+        return "asleep"
+      end
+
+      return "ready"
+    end
+
+    local claude = {
+      (function()
         local dots = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+        local icons = { off = "󰚩 ", error = "󰚩 ", asleep = "󰚩 ", ready = "󰚩 " }
         local i = 1
-        local timer = vim.loop.new_timer()
+        local was_waiting = false
+        local timer = vim.uv.new_timer()
 
         timer:start(
           0,
           100,
           vim.schedule_wrap(function()
-            require("lualine").refresh({ place = { "statusline" } })
+            local waiting = claude_state() == "waiting"
+            if waiting or was_waiting then
+              require("lualine").refresh({ place = { "statusline" } })
+            end
+            was_waiting = waiting
           end)
         )
 
@@ -116,32 +142,20 @@ return {
         })
 
         return function()
-          local status = require("codeium.virtual_text").status()
-
-          if not vim.g.codeium_status then
-            return "󰬊 "
-          elseif status.state == "idle" then
-            return "󰒲 "
-          elseif status.state == "waiting" then
+          local state = claude_state()
+          if state == "waiting" then
             i = (i % #dots) + 1
-            return dots[i]
-          elseif status.state == "completions" and status.total > 0 then
-            return string.format(" %d/%d", status.current, status.total)
+            return dots[i] .. " "
           end
 
-          return status.state
+          return icons[state]
         end
       end)(),
       color = function()
-        local status = require("codeium.virtual_text").status()
-
-        if not vim.g.codeium_status then
+        local state = claude_state()
+        if state == "off" or state == "error" then
           return { fg = "#FF5555" }
-        elseif status.state == "idle" then
-          return { fg = "#AEB7D0" }
-        elseif status.state == "waiting" then
-          return { fg = "#AEB7D0" }
-        elseif status.state == "completions" and status.total > 0 then
+        elseif state == "ready" then
           return { fg = "#699854" }
         end
 
@@ -233,7 +247,7 @@ return {
             },
             show_colors = true,
           },
-          codeium,
+          claude,
           {
             "encoding",
             cond = hide_in_width,
