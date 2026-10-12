@@ -8,10 +8,11 @@ It does not manage all the plugins with Nix, only the ones that break on NixOS a
 
 ## With Nix
 
-It has two flavours, both of them set the variable `NVIM_APPNAME` to `nvim-nix` (the nvim wrapper does):
+It has three flavours, all of them set the variable `NVIM_APPNAME` to `nvim-nix` (the nvim wrapper does):
 
 - `#default`: neovim configuration is copied over to the nix-store, and you can run it on any machine with Nix without symlinking it to `~/.config/nvim`
 - `#vanilla`: neovim configuration is loaded from `~/.config/$NVIM_APPNAME`, this is what I usually use as it allows modifying the config on the fly, it also means that I can use the same config on systems without nix. This requires an extra step: execute `./link.sh` as part of the bootstrap to link the config on a new machine
+- `#slim`: same as `#default` but without the LSPs, linters and formatters from `nix/packages.nix`, only `fd`, `git`, `ripgrep` and `fswatch` are added to the `$PATH`. Meant for devcontainers, where the closure size matters
 
 ### Folder Structure
 

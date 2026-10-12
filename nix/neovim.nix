@@ -2,6 +2,7 @@
   inputs,
   system,
   with-config ? true,
+  with-tools ? true,
   ...
 }:
 let
@@ -24,7 +25,7 @@ let
   # Consolidate all the packages in the same PATH to avoid multiple entries
   externalPackages = pkgs.buildEnv {
     name = "nvim-external-pkgs";
-    paths = packages.packages;
+    paths = if with-tools then packages.packages else packages.corePackages;
     pathsToLink = [ "/bin" ];
   };
 
@@ -43,7 +44,7 @@ let
     withNodeJs = false;
     withRuby = false;
     extraPython3Packages = packages.extraPython3Packages;
-    extraLuaPackages = packages.extraLuaPackages;
+    extraLuaPackages = if with-tools then packages.extraLuaPackages else packages.coreLuaPackages;
     plugins = allPlugins;
     luaRcContent = "";
     wrapRc = false;

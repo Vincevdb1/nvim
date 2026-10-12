@@ -40,6 +40,11 @@
           inherit inputs system;
           with-config = false;
         };
+        # Slim variant, same config and plugins without the LSPs, linters and formatters
+        slim = import ./nix/neovim.nix {
+          inherit inputs system;
+          with-tools = false;
+        };
       });
 
       devShells = eachSystem (
