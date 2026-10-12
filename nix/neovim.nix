@@ -63,6 +63,12 @@ let
         "NVIM_APPNAME"
         appName
       ]
+      # Without the tools, the config falls back to mason to install them
+      ++ lib.optionals (!with-tools) [
+        "--set"
+        "NVIM_SLIM"
+        "1"
+      ]
       ++ lib.optionals opts.withSQLite [
         "--set"
         "LIBSQLITE"

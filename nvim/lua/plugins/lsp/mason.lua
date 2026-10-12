@@ -2,12 +2,12 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = vim.g.is_nixos and {} or {
+      ensure_installed = vim.g.mason_auto_install and {
         "lua_ls",
         "nil",
         "hyprls",
         "clangd",
-      },
+      } or {},
     },
     keys = {
       { "<leader>um", "<cmd>Mason<cr>", desc = "Mason" },
@@ -31,7 +31,7 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = {
-      ensure_installed = vim.g.is_nixos and {} or { "stylua" },
+      ensure_installed = vim.g.mason_auto_install and { "stylua" } or {},
     },
     dependencies = {
       "williamboman/mason.nvim",
