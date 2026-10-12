@@ -35,6 +35,12 @@ return {
       vim.lsp.enable("ra")
 
       vim.lsp.enable("lua_ls")
+      vim.lsp.config("nil_ls", {
+        on_init = function(client)
+          client.server_capabilities.inlayHintProvider = nil
+        end,
+      })
+
       vim.lsp.enable("nixd")
       vim.lsp.enable("nil_ls")
       vim.lsp.enable("clangd")
