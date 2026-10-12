@@ -22,7 +22,10 @@ return {
         },
       })
 
-      vim.cmd.colorscheme("vscode")
+      -- Prefer the matugen palette; without one, stay on vscode.
+      local matugen = require("config.matugen")
+      vim.cmd.colorscheme(matugen.load() and "matugen" or "vscode")
+      matugen.watch()
     end,
   },
   {

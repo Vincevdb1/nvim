@@ -158,6 +158,8 @@ return {
             return "neopywal"
           elseif current_theme == "vscode" then
             return "vscode"
+          elseif current_theme == "matugen" then
+            return "matugen"
           else
             return "auto"
           end
