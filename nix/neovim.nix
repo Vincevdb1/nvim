@@ -97,7 +97,7 @@ let
 
     done
 
-    find "$CONF" -maxdepth 1 -type l ! -e -delete
+    find "$CONF" -maxdepth 1 -xtype l -delete
 
     # Saved for config/host-env.lua to restore.
     export NVIM_HOST_XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
