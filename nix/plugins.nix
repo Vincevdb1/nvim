@@ -22,10 +22,6 @@ with pkgs.vimPlugins;
   # Plugins can also be lazy loaded with ':packadd! plugin-name' when optional is true:
   #{ plugin = luasnip; optional = true; }
 
-  nvim-treesitter.withAllGrammars
-  nvim-treesitter-textobjects
-  nvim-treesitter-context
-
   # Plugins outside of nixpkgs
   # (mkVimPlugin {
   #   src = inputs.vim-varnish;
