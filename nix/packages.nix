@@ -16,6 +16,9 @@ let
     silicon
     ghostscript
     mermaid-cli
+    plantuml
+    graphviz # plantuml
+    jre # plantuml-previewer
     imagemagick
     nodejs
 
