@@ -23,6 +23,7 @@ let
     (lib.lowPrio gotools) # goimports (lowPrio because 'modernize' collides with gopls)
     black
     clang-tools
+    csharpier
     go-jsonnet # jsonnetfmt
     hurl
     isort
@@ -55,6 +56,7 @@ let
     lua-language-server
     marksman
     nil
+    roslyn-ls
     rust-analyzer
     templ
     terraform-ls

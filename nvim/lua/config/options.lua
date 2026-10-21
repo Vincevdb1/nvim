@@ -27,6 +27,8 @@ vim.opt.spelllang = { 'en', 'nl' }
 vim.filetype.add({
   extension = {
     grm = "yacc",
+    xaml = "xaml",
+    axaml = "xaml",
   },
 })
 

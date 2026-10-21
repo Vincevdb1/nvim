@@ -26,6 +26,7 @@ return {
           javascript = { "prettierd", "prettier", stop_after_first = true },
           cpp = { "clang_format" },
           nix = { "nixfmt" },
+          cs = { "csharpier", lsp_format = "fallback" },
         },
         format_on_save = function(bufnr)
           -- Disable with a global or buffer-local variable
