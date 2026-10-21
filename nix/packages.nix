@@ -2,6 +2,7 @@
 let
   dependencies = with pkgs; [
     fd
+    gcc
     git
     ripgrep
   ];
