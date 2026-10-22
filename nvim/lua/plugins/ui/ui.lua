@@ -73,6 +73,8 @@ return {
     },
     {
       "folke/todo-comments.nvim",
+      -- INFO: Pinned until snacks is unpinned (>= v2.28.0 needed for Snacks.picker.highlight.extend)
+      commit = "aba91f1",
       cmd = { "TodoTrouble", "TodoTelescope" },
       event = { "BufReadPost", "BufWritePost", "BufNewFile" },
       opts = {},
