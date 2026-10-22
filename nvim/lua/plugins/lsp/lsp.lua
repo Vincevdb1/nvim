@@ -12,9 +12,7 @@ return {
         capabilities = capabilities,
       })
 
-      vim.lsp.config("ra", {
-        cmd = { "rust-analyzer" },
-        filetypes = { "rust" },
+      vim.lsp.config("rust_analyzer", {
         settings = {
           ["rust-analyzer"] = {
             files = { watcher = "server" },
@@ -29,10 +27,9 @@ return {
             rustc = { source = "discover" },
           },
         },
-        root_markers = { { "Cargo.toml" }, ".git" },
       })
 
-      vim.lsp.enable("ra")
+      vim.lsp.enable("rust_analyzer")
 
       vim.lsp.enable("lua_ls")
       vim.lsp.config("nil_ls", {
@@ -72,14 +69,8 @@ return {
           opts.desc = "Show LSP type definitions"
           vim.keymap.set("n", "grt", Snacks.picker.lsp_type_definitions, opts)
 
-          opts.desc = "See available code actions"
-          vim.keymap.set({ "n", "v" }, "<leader>gra", vim.lsp.buf.code_action, opts)
-
           opts.desc = "LSP rename"
           vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
-
-          opts.desc = "Show documentation for what is under cursor"
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         end,
       })
 
