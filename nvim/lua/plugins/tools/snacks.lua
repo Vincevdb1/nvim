@@ -10,31 +10,47 @@ return {
       dashboard = {
         enabled = true,
         preset = {
-          header = [[                                                                       
-                                                                     
-       ████ ██████           █████      ██                     
-      ███████████             █████                             
-      █████████ ███████████████████ ███   ███████████   
-     █████████  ███    █████████████ █████ ██████████████   
-    █████████ ██████████ █████████ █████ █████ ████ █████   
-  ███████████ ███    ███ █████████ █████ █████ ████ █████  
- ██████  █████████████████████ ████ █████ █████ ████ ██████ 
-	                                                                       ]],
           keys = {
-            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = "\u{f4a5} ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = "󰥨 ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = "󰈞 ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = "\u{f1da} ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             {
-              icon = " ",
+              icon = "\u{f423} ",
               key = "c",
               desc = "Config",
               action = ":lua Snacks.dashboard.pick('files', {cwd = vim.g.nvim_config_dir})",
             },
-            { icon = " ", key = "s", desc = "Restore Sessions", action = ":lua require('persistence').select()" },
             { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+            { icon = "\u{e348} ", key = "s", desc = "Restore Session", action = ":lua require('persistence').select()" },
+            { icon = "\u{f426} ", key = "q", desc = "Quit", action = ":qa" },
           },
+        },
+        sections = {
+          function()
+            return { header = require("scripts.dashboard").header(), padding = 1, pane = 1 }
+          end,
+          { pane = 1, section = "startup" },
+          { pane = 2, section = "keys", padding = 1 },
+          { pane = 2, icon = "\u{f0c5} ", title = "RECENT FILES", section = "recent_files", indent = 2, padding = 1 },
+          function()
+            local root = Snacks.git.get_root()
+            if not root then
+              return nil
+            end
+            local branch = vim.fn.trim(vim.fn.system({ "git", "-C", root, "branch", "--show-current" }))
+            return {
+              pane = 2,
+              icon = "\u{e725} ",
+              title = "GIT STATUS" .. (branch ~= "" and (" [" .. branch .. "]") or ""),
+              section = "terminal",
+              cmd = "git --no-pager diff --stat -B -M -C && git status --short --renames",
+              height = 5,
+              padding = 1,
+              ttl = 5 * 60,
+              indent = 2,
+            }
+          end,
         },
       },
       explorer = { enabled = true },
