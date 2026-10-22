@@ -24,6 +24,29 @@ vim.opt.cursorlineopt = 'number'
 vim.opt.spell = true
 vim.opt.spelllang = { 'en', 'nl' }
 
+local severity = vim.diagnostic.severity
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●",
+    -- show error codes
+    format = function(diagnostic)
+      local code = diagnostic.code and string.format("[%s]", diagnostic.code) or ""
+      return string.format("%s %s", code, diagnostic.message)
+    end,
+  },
+  signs = {
+    text = {
+      [severity.ERROR] = " ",
+      [severity.WARN] = " ",
+      [severity.HINT] = "󰠠 ",
+      [severity.INFO] = " ",
+    },
+  },
+  underline = false,
+  update_in_insert = false,
+  float = { source = true },
+})
+
 vim.filetype.add({
   extension = {
     grm = "yacc",

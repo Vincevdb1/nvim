@@ -112,27 +112,6 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
   end,
 })
 
--- Appearance of diagnostics
-vim.diagnostic.config({
-  virtual_text = {
-    prefix = "●",
-    -- Add a custom format function to show error codes
-    format = function(diagnostic)
-      local code = diagnostic.code and string.format("[%s]", diagnostic.code) or ""
-      return string.format("%s %s", code, diagnostic.message)
-    end,
-  },
-  underline = false,
-  update_in_insert = true,
-  float = {
-    source = "always", -- Or "if_many"
-  },
-  -- Make diagnostic background transparent
-  on_ready = function()
-    vim.cmd("highlight DiagnosticVirtualText guibg=NONE")
-  end,
-})
-
 if vim.g.is_dev_shell then
   vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
@@ -146,9 +125,9 @@ if vim.g.is_dev_shell then
 end
 
 -- Disable spell checking for certain buffers by filetype or buffer name
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("SpellCheckIgnoreLazy", { clear = true }),
-  pattern = { "lazy", "lazyvim", "noice" },
+  pattern = { "lazy", "noice" },
   callback = function()
     vim.opt_local.spell = false
   end,

@@ -212,6 +212,8 @@ local function highlights(c)
 
     -- Plugins
     DropBarIconUISeparator = { fg = c.outline },
+    TreesitterContextSeparator = { fg = c.outline_variant },
+    SnacksDashboardHeader = { fg = c.primary },
     BufferLineNumbers = { fg = c.bright_white },
   }
 end

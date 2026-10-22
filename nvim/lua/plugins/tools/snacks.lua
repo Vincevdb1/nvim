@@ -86,8 +86,6 @@ return {
       words = { enabled = false },
     })
 
-    vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#569CD6" })
-
     -- Keymaps
     local wk = require("which-key")
 
@@ -107,7 +105,7 @@ return {
     end, { desc = "Find Recursive" })
     vim.keymap.set("n", "<leader>fg", function()
       Snacks.picker.git_files()
- Snacks.toggle.dim():map("<leader>uD")   end, { desc = "Find Git" })
+    end, { desc = "Find Git" })
     vim.keymap.set("n", "<leader>fb", function()
       Snacks.picker.buffers()
     end, { desc = "Find Buffer" })

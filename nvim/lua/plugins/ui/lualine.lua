@@ -39,7 +39,7 @@ return {
       cond = function()
         return vim.g.is_dev_shell
       end,
-      color = { fg = "#FF5555" },
+      color = "DiagnosticError",
     }
 
     local diagnostics = {
@@ -86,7 +86,7 @@ return {
       cond = hide_in_width,
       color = function()
         if vim.g.disable_autoformat then
-          return { fg = "#FF5555" }
+          return "DiagnosticError"
         end
       end,
     }
@@ -154,7 +154,7 @@ return {
       color = function()
         local state = claude_state()
         if state == "off" or state == "error" then
-          return { fg = "#FF5555" }
+          return "DiagnosticError"
         elseif state == "ready" then
           return { fg = "#699854" }
         end

@@ -19,6 +19,8 @@ return {
           CursorLineNr = { bold = true, italic = true },
           DropBarIconUISeparator = { fg = "#5A5A5A" },
           BufferLineNumbers = { fg = "#D4D4D4" },
+          TreesitterContextSeparator = { fg = "#222222" },
+          SnacksDashboardHeader = { fg = "#569CD6" },
         },
       })
 

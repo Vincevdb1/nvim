@@ -70,8 +70,6 @@ return {
         enable = true,
         separator = "-"
       })
-
-      vim.api.nvim_set_hl(0, "TreesitterContextSeparator", { fg = "#222222" })
     end,
   },
   {
