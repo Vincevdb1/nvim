@@ -2,10 +2,10 @@
   description = "Vincevdb1 neovim flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?rev=c581273b8d5bdf1c6ce7e0a54da9841e6a763913";
+    nixpkgs.url = "github:NixOS/nixpkgs?rev=02c087f3fe673c9e317f206a627cb6b910336dbe";
     # Tracks latest nixpkgs for CLI tools, formatters, linters and LSPs,
     # kept separate so they can update without bumping the neovim pin.
-    nixpkgs-tools.url = "github:NixOS/nixpkgs";
+    nixpkgs-tools.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     systems.url = "github:nix-systems/default";
 

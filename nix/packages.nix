@@ -4,6 +4,7 @@ let
     fd
     gcc
     git
+    tree-sitter
     ripgrep
   ];
 
@@ -24,50 +25,28 @@ let
     nodejs
 
     # Formatters
-    (lib.lowPrio gotools) # goimports (lowPrio because 'modernize' collides with gopls)
     black
     clang-tools
     csharpier
-    go-jsonnet # jsonnetfmt
-    hurl
     isort
     nixfmt
     prettier
     prettierd
-    ruff
     rustfmt
-    shfmt
     stylua
-    taplo
-    xmlformat
-    yamlfmt
 
     # Linters
-    ansible-lint
-    clippy
-    djlint
-    golangci-lint
-    shellcheck
-    tflint
-    typos
-    yamllint
+    clippy # rust-analyzer check
+    shellcheck # bash-language-server
 
     # LSP
     basedpyright
     bash-language-server
-    cue
-    gopls
     lua-language-server
-    marksman
     nil
     roslyn-ls
     rust-analyzer
-    templ
-    terraform-ls
-    tofu-ls
     typescript-language-server
-    vscode-langservers-extracted # html, css, ...
-    yaml-language-server
   ];
 in
 {
