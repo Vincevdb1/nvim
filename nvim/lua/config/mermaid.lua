@@ -123,7 +123,7 @@ function M.attach(src_buf)
   })
   vim.keymap.set("n", "<leader>tm", function()
     M.toggle(src_buf)
-  end, { buffer = src_buf, desc = "Toggle Mermaid Preview" })
+  end, { buffer = src_buf, desc = "Mermaid Preview" })
 end
 
 return M

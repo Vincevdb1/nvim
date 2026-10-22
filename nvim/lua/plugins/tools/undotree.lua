@@ -3,7 +3,7 @@ return {
     "mbbill/undotree",
     enabled = false,
     config = function()
-      vim.keymap.set("n", "<leader>uu", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" })
+      vim.keymap.set("n", "<leader>uu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
     end,
   },
   {
@@ -15,7 +15,7 @@ return {
           excluded_ft = { "neotree"}
         }
       })
-      vim.keymap.set("n", "<leader>uu", ":Atone toggle<CR>", { desc = "Toggle Undotree" })
+      vim.keymap.set("n", "<leader>uu", ":Atone toggle<CR>", { desc = "Undotree" })
     end,
   },
 }

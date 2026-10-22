@@ -21,9 +21,9 @@ return {
         -- Set <Esc> only for this buffer
         vim.keymap.set("t", "<Esc>", "<cmd>Floaterminal<CR>", {
           buffer = term_buf,
-          desc = "Toggle Floating terminal",
+          desc = "Floating Terminal",
         })
-      end, { desc = "Toggle Floating terminal" })
+      end, { desc = "Floating Terminal" })
     end,
   },
 }

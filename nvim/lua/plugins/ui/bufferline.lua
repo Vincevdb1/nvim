@@ -97,11 +97,6 @@
       },
     })
 
-    local wk = require("which-key")
-    wk.add({
-      { "<leader>b", group = "Buffer" },
-    })
-
     -- Keymaps
     local opts = {
       noremap = true,

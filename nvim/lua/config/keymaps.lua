@@ -49,10 +49,10 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<C-e>", "<C-u>", opts)
 
 -- Resize with arrows
-vim.keymap.set("n", "<Up>", ":resize -2<CR>", opts)
-vim.keymap.set("n", "<Down>", ":resize +2<CR>", opts)
-vim.keymap.set("n", "<Left>", ":vertical resize +2<CR>", opts)
-vim.keymap.set("n", "<Right>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Up>", "<cmd>resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Down>", "<cmd>resize +2<CR>", opts)
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize +2<CR>", opts)
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<CR>", opts)
 
 -- window management
 vim.keymap.set("n", "<leader>v", "<C-w>v", {
@@ -65,7 +65,7 @@ vim.keymap.set("n", "<leader>h", "<C-w>s", {
   silent = true,
   desc = "Split window horizontally",
 })
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
+vim.keymap.set("n", "<leader>=", "<C-w>=", { desc = "Equalize splits" })
 
 -- Navigate between splits
 vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", opts)
@@ -78,9 +78,6 @@ vim.keymap.set("n", "<leader>w", ":Bdelete!<CR>", {
   silent = true,
   desc = "Close Buffer",
 }) -- close buffer
-
--- toggle line wrapping
-vim.keymap.set("n", "<leader>cw", "<cmd>:set wrap!<CR>", { desc = "Toggle Line Wrap" })
 
 -- Press jj or kj fast to exit insert mode
 vim.keymap.set("i", "jj", "<ESC>", opts)

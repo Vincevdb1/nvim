@@ -71,7 +71,5 @@ return {
       silence_lsp = true,       -- suppress noisy LSP log messages (e.g., Pyright reference spam)
       debug_mode = false,       -- enable debug output for development, see CONTRIBUTE.md
     })
-
-    vim.keymap.set("n", "<leader>ul", ":LenslineToggleView<CR>", { desc = "Toggle Lensline" })
   end,
 }

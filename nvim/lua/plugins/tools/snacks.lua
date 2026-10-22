@@ -87,16 +87,11 @@ return {
     })
 
     -- Keymaps
-    local wk = require("which-key")
-
     vim.keymap.set("n", "<leader>e", function()
       Snacks.explorer()
-    end, { desc = "Toggle Explorer" })
+    end, { desc = "Explorer" })
 
     -- Picker keymaps Neovim
-    wk.add({
-      { "<leader>f", group = "File/Find" },
-    })
     vim.keymap.set("n", "<leader>ff", function()
       Snacks.picker.files()
     end, { desc = "Find Files" })
@@ -142,11 +137,71 @@ return {
     end, { desc = "Scratch Pad" })
 
     -- Toggles
-    Snacks.toggle.option("spell", { name = "Toggle Spelling" }):map("<leader>uS")
-    Snacks.toggle.option("relativenumber", { name = "Toggle Relative Number" }):map("<leader>uL")
+    Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>uS")
+    Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+    Snacks.toggle.option("wrap", { name = "Code Wrap" }):map("<leader>cw")
     Snacks.toggle.diagnostics():map("<leader>ud")
     Snacks.toggle.treesitter():map("<leader>uT")
     Snacks.toggle.inlay_hints():map("<leader>uh")
     Snacks.toggle.dim():map("<leader>uD")
+
+    -- Plugin toggles: getters check package.loaded so rendering which-key doesn't load lazy plugins
+    Snacks.toggle.new({
+      name = "Auto Format",
+      get = function() return not vim.g.disable_autoformat end,
+      set = function(state) vim.g.disable_autoformat = not state end,
+    }):map("<leader>uf")
+    Snacks.toggle.new({
+      name = "Session Autosave",
+      get = function() return require("auto-session.config").auto_save end,
+      set = function(state) require("auto-session").disable_auto_save(state) end,
+    }):map("<leader>us")
+    Snacks.toggle.new({
+      name = "Cloak",
+      get = function() return package.loaded["cloak"] ~= nil and require("cloak").opts.enabled end,
+      set = function(state) require("cloak")[state and "enable" or "disable"]() end,
+    }):map("<leader>uc")
+    Snacks.toggle.new({
+      name = "Lensline",
+      get = function() return package.loaded["lensline.config"] ~= nil and require("lensline.config").is_visible() end,
+      set = function(state) require("lensline.commands")[state and "show" or "hide"]() end,
+    }):map("<leader>ul")
+    Snacks.toggle.new({
+      name = "Screenkey Statusline",
+      get = function() return require("screenkey").statusline_component_is_active() end,
+      set = function() require("screenkey").toggle_statusline_component() end,
+    }):map("<leader>uk")
+    Snacks.toggle.new({
+      name = "Brainrot",
+      get = function() return vim.g.brainrot_enabled == true end,
+      set = function(state)
+        vim.g.brainrot_enabled = state
+        require("brainrot").setup(state and {
+          phonk_time = 2.5,
+          disable_phonk = false,
+          sound_enabled = true,
+          image_enabled = true,
+          volume = 50,
+        } or {
+          disable_phonk = true,
+          sound_enabled = false,
+          image_enabled = false,
+        })
+      end,
+    }):map("<leader>ub")
+    Snacks.toggle.new({
+      name = "Copilot",
+      get = function() return package.loaded["copilot.client"] ~= nil and require("copilot.client").buf_is_attached(0) == true end,
+      set = function(state) vim.cmd("Copilot " .. (state and "attach" or "detach")) end,
+    }):map("<leader>ap")
+    Snacks.toggle.new({
+      name = "Claude Autocomplete",
+      -- The auto lane starts enabled (opts.auto.enabled) once the plugin loads on InsertEnter
+      get = function() return package.loaded["claude-complete.auto"] == nil or require("claude-complete.auto").is_enabled() end,
+      set = function(state)
+        require("claude-complete")
+        vim.cmd("ClaudeCompleteAuto " .. (state and "on" or "off"))
+      end,
+    }):map("<leader>ac")
   end,
 }

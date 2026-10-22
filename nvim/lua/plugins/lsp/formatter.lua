@@ -10,12 +10,6 @@ return {
         mode = "n",
         desc = "Format buffer",
       },
-      {
-        "<leader>uf",
-        "<cmd>FormatToggle<cr>",
-        mode = "n",
-        desc = "Toggle Auto Format",
-      },
     },
     config = function()
       require("conform").setup({

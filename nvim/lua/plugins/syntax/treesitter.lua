@@ -117,19 +117,19 @@ return {
       end, { desc = "next argument end" })
 
       -- Movement between blocks
-      vim.keymap.set({ "n", "x", "o" }, "[s", function()
+      vim.keymap.set({ "n", "x", "o" }, "[k", function()
         require("nvim-treesitter-textobjects.move").goto_previous_start("@block.outer", "textobjects")
       end, { desc = "prev block" })
 
-      vim.keymap.set({ "n", "x", "o" }, "]s", function()
+      vim.keymap.set({ "n", "x", "o" }, "]k", function()
         require("nvim-treesitter-textobjects.move").goto_next_start("@block.outer", "textobjects")
       end, { desc = "next block" })
 
-      vim.keymap.set({ "n", "x", "o" }, "[S", function()
+      vim.keymap.set({ "n", "x", "o" }, "[K", function()
         require("nvim-treesitter-textobjects.move").goto_previous_end("@block.outer", "textobjects")
       end, { desc = "prev block end" })
 
-      vim.keymap.set({ "n", "x", "o" }, "]S", function()
+      vim.keymap.set({ "n", "x", "o" }, "]K", function()
         require("nvim-treesitter-textobjects.move").goto_next_end("@block.outer", "textobjects")
       end, { desc = "next block end" })
 

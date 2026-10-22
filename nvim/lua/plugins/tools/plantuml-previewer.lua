@@ -13,7 +13,7 @@ return {
     end
   end,
   keys = {
-    { "<leader>tu", "<cmd>PlantumlToggle<cr>", ft = "plantuml", desc = "Toggle PlantUML Preview" },
+    { "<leader>tu", "<cmd>PlantumlToggle<cr>", ft = "plantuml", desc = "PlantUML Preview" },
   },
   cmd = { "PlantumlOpen", "PlantumlStart", "PlantumlStop", "PlantumlToggle", "PlantumlSave" },
 }

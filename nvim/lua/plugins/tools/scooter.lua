@@ -4,7 +4,7 @@ return {
   config = function()
     require("toggleterm").setup()
 
-    vim.keymap.set({'n', 't'}, '<C-;>', '<cmd>ToggleTerm<CR>', { desc = 'Toggle Bottom terminal' })
+    vim.keymap.set({'n', 't'}, '<C-;>', '<cmd>ToggleTerm<CR>', { desc = 'Bottom Terminal' })
 
     -- Scooter integration
 
@@ -57,7 +57,7 @@ return {
         scooter_term:open()
     end
 
-    vim.keymap.set('n', '<leader>ts', open_scooter, { desc = 'Toggle scooter' })
+    vim.keymap.set('n', '<leader>ts', open_scooter, { desc = 'Scooter' })
     vim.keymap.set('v', '<leader>ts',
         '"ay<ESC><cmd>lua OpenScooterSearchText(vim.fn.getreg("a"))<CR>',
         { desc = 'Search selected text in scooter' })

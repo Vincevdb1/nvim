@@ -42,8 +42,5 @@ return {
     })
 
     require("screenkey").toggle_statusline_component()
-    vim.keymap.set("n", "<leader>uk", function()
-      require("screenkey").toggle_statusline_component()
-    end, { desc = "Toggle screenkey statusline component" })
   end,
 }

@@ -10,7 +10,7 @@ return {
     require("dbee").install()
   end,
   keys = {
-    { "<leader>td", "<cmd>Dbee<cr>", desc = "Toggle Database Manager" },
+    { "<leader>td", "<cmd>Dbee<cr>", desc = "Database Manager" },
   },
   config = function()
     require("dbee").setup(--[[optional config]])

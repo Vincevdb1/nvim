@@ -44,17 +44,12 @@ return {
       project_path = project_path,
     })
 
-    local wk = require("which-key")
-    wk.add({
-      { "<leader>r", group = "Run/Code" },
-    })
-
     vim.keymap.set("n", "<leader>rr", ":RunCode<CR>", { noremap = true, silent = false })
     vim.keymap.set("n", "<leader>rf", ":RunFile<CR>", { noremap = true, silent = false })
     -- vim.keymap.set("n", "<leader>rft", ":RunFile tab<CR>", { noremap = true, silent = false })
     vim.keymap.set("n", "<leader>rp", ":RunProject<CR>", { noremap = true, silent = false })
     vim.keymap.set("n", "<leader>rc", ":RunClose<CR>", { noremap = true, silent = false })
-    vim.keymap.set("n", "<leader>crf", ":CRFiletype<CR>", { noremap = true, silent = false })
-    vim.keymap.set("n", "<leader>crp", ":CRProjects<CR>", { noremap = true, silent = false })
+    vim.keymap.set("n", "<leader>rF", "<cmd>CRFiletype<CR>", { desc = "Code Runner Filetypes" })
+    vim.keymap.set("n", "<leader>rP", "<cmd>CRProjects<CR>", { desc = "Code Runner Projects" })
   end,
 }

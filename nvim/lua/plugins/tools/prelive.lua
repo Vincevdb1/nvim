@@ -7,7 +7,7 @@ return {
         port = 3000
       }
     })
-    vim.keymap.set("n", "<leader>tl", "<cmd>PreLiveGo<cr>", { desc = "Toggle Live Server" })
+    vim.keymap.set("n", "<leader>tl", "<cmd>PreLiveGo<cr>", { desc = "Live Server" })
   end,
   cmd = {
     "PreLiveGo",

@@ -5,9 +5,6 @@ return {
     cmd = "Copilot",
     -- event = "InsertEnter",
     build = ":Copilot auth",
-    keys = {
-      { "<leader>cp", "<cmd>Copilot toggle<cr>", desc = "Toggle Copilot" },
-    },
     config = function()
       require("copilot").setup({
         suggestion = {
