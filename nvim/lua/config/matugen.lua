@@ -189,6 +189,7 @@ local function highlights(c)
     LspReferenceWrite = { link = "LspReferenceText" },
     LspInlayHint = { fg = c.outline, italic = true },
     LspSignatureActiveParameter = { fg = c.primary, bold = true },
+    LspCodeLens = { fg = c.outline },
 
     -- Diff / git
     DiffAdd = { bg = c.surface_container, fg = c.green },
@@ -201,6 +202,7 @@ local function highlights(c)
     GitSignsAdd = { fg = c.green },
     GitSignsChange = { fg = c.yellow },
     GitSignsDelete = { fg = c.red },
+    GitSignsCurrentLineBlame = { fg = c.outline },
 
     -- Plugins
     DropBarIconUISeparator = { fg = c.outline },

@@ -41,7 +41,7 @@ return {
           },
           style = {
             separator = " • ", -- separator between all lens attributes
-            highlight = "NonText", -- highlight group for lens text
+            highlight = "LspCodeLens", -- highlight group for lens text
             prefix = "┃ ", -- prefix before lens content
             placement = "above", -- "above" | "inline" - where to render lenses (consider prefix = "" for inline)
             use_nerdfont = true, -- enable nerd font icons in built-in providers
