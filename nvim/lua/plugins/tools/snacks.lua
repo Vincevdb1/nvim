@@ -217,8 +217,21 @@ return {
           sound_enabled = false,
           image_enabled = false,
         })
+        -- Brainrot brings the fireworks along
+        local fireworks = require("fireworks")
+        fireworks.enabled = state
+        if not state then fireworks.stop() end
       end,
     }):map("<leader>ub")
+    Snacks.toggle.new({
+      name = "Fireworks",
+      get = function() return package.loaded["fireworks"] ~= nil and require("fireworks").enabled end,
+      set = function(state)
+        local fireworks = require("fireworks")
+        fireworks.enabled = state
+        if not state then fireworks.stop() end
+      end,
+    }):map("<leader>uF")
     Snacks.toggle.new({
       name = "Copilot",
       get = function() return package.loaded["copilot.client"] ~= nil and require("copilot.client").buf_is_attached(0) == true end,

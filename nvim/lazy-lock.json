@@ -19,6 +19,7 @@
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dropbar.nvim": { "branch": "master", "commit": "f7c6fa21e2a7c32576e7a1791774a3736987f467" },
   "easy-dotnet.nvim": { "branch": "main", "commit": "19974e83b046aee8e722d27adad06e9f9ccf6499" },
+  "fireworks.nvim": { "branch": "main", "commit": "723f7fe39f018e3c4295990c4d9bcdc16f3a03d9" },
   "flash.nvim": { "branch": "main", "commit": "5f0f270fdc7c5b0c21d903ee85b9cb06f2ac636a" },
   "floaterminal.nvim": { "branch": "main", "commit": "da2ebe30b8010f76075f14ed1ad81769fd03a2eb" },
   "gitsigns.nvim": { "branch": "main", "commit": "fd780920613e541cbdfac41bf711583ed49f9249" },
