@@ -14,6 +14,7 @@ return {
       { "<leader>f", group = "Find" },
       { "<leader>g", group = "Git" },
       { "<leader>gh", group = "Hunks" },
+      { "<leader>m", group = "Match" },
       { "<leader>r", group = "Run" },
       { "<leader>t", group = "Tools" },
       { "<leader>u", group = "UI / Toggles" },
