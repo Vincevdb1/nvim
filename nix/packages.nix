@@ -25,28 +25,45 @@ let
     nodejs
 
     # Formatters
-    black
     clang-tools
     csharpier
-    isort
+    gersemi
+    gofumpt
+    gotools
     nixfmt
     prettier
     prettierd
+    ruff
     rustfmt
+    shfmt
     stylua
+    tex-fmt
 
     # Linters
     clippy # rust-analyzer check
     shellcheck # bash-language-server
 
     # LSP
+    angular-language-server
     basedpyright
     bash-language-server
+    dockerfile-language-server
+    gopls
+    hyprls
     lua-language-server
-    nil
+    marksman
+    neocmakelsp
+    nixd
     roslyn-ls
     rust-analyzer
-    typescript-language-server
+    sqruff
+    taplo
+    templ
+    texlab
+    vscode-langservers-extracted
+    vtsls
+    vue-language-server
+    yaml-language-server
   ];
 in
 {

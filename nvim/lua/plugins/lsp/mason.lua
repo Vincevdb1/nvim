@@ -26,7 +26,6 @@ return {
     opts = {
       ensure_installed = vim.g.mason_auto_install and {
         "lua_ls",
-        "nil",
         "hyprls",
         "clangd",
       } or {},
