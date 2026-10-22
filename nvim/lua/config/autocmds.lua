@@ -1,4 +1,4 @@
-vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+vim.hl.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
 
 -- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   desc = "highlight selection on yank",
   callback = function()
-    vim.highlight.on_yank({ timeout = 200, visual = true })
+    vim.hl.on_yank({ timeout = 200, visual = true })
   end,
 })
 

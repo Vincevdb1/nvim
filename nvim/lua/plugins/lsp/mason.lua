@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = vim.g.mason_auto_install and {
         "lua_ls",
@@ -14,7 +14,7 @@ return {
     },
     dependencies = {
       {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
           ui = {
             icons = {
@@ -34,7 +34,7 @@ return {
       ensure_installed = vim.g.mason_auto_install and { "stylua" } or {},
     },
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
     },
   },
 }
