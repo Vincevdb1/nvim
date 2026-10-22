@@ -34,8 +34,25 @@ return {
       },
 
       completion = {
+        menu = {
+          border = "rounded",
+          scrollbar = false,
+          draw = {
+            padding = { 0, 1 },
+            gap = 2,
+            -- label fills the width so the description column sits on the right
+            columns = { { "kind_icon" }, { "label" }, { "label_description" } },
+            components = {
+              kind_icon = {
+                text = function(ctx)
+                  return " " .. ctx.kind_icon .. ctx.icon_gap
+                end,
+              },
+            },
+          },
+        },
         documentation = {
-          window = { border = "none" },
+          window = { border = "rounded" },
           auto_show = true,
           auto_show_delay_ms = 500,
         },
@@ -57,7 +74,7 @@ return {
 
       fuzzy = { implementation = "prefer_rust_with_warning" },
 
-      signature = { enabled = true },
+      signature = { enabled = true, window = { border = "rounded" } },
     },
   },
 }
