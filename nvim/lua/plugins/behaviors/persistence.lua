@@ -36,6 +36,8 @@ return {
     branch = false,
   },
   config = function(_, opts)
+    vim.opt.sessionoptions:remove("blank")
+
     local persistence = require("persistence")
     persistence.setup(opts)
 
