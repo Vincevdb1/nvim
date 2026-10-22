@@ -31,7 +31,7 @@ return {
               desc = "Config",
               action = ":lua Snacks.dashboard.pick('files', {cwd = vim.g.nvim_config_dir})",
             },
-            { icon = " ", key = "s", desc = "Restore Sessions", action = "<cmd>AutoSession search<CR>" },
+            { icon = " ", key = "s", desc = "Restore Sessions", action = ":lua require('persistence').select()" },
             { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
@@ -78,12 +78,16 @@ return {
         },
       },
       gh = { enabled = true },
+      lazygit = { enabled = true },
       notifier = { enabled = false },
       quickfile = { enabled = true },
       scope = { enabled = false },
       scroll = { enabled = false },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      styles = {
+        lazygit = { border = "rounded" },
+      },
     })
 
     -- Keymaps
@@ -116,6 +120,11 @@ return {
     vim.keymap.set("n", "<leader>fH", function()
       Snacks.picker.highlights()
     end, { desc = "Find highlights" })
+
+    -- Git
+    vim.keymap.set("n", "<leader>gl", function()
+      Snacks.lazygit()
+    end, { desc = "LazyGit" })
 
     -- Github
     vim.keymap.set("n", "<leader>gi", function()
@@ -153,8 +162,8 @@ return {
     }):map("<leader>uf")
     Snacks.toggle.new({
       name = "Session Autosave",
-      get = function() return require("auto-session.config").auto_save end,
-      set = function(state) require("auto-session").disable_auto_save(state) end,
+      get = function() return package.loaded["persistence"] ~= nil and require("persistence").active() end,
+      set = function(state) require("persistence")[state and "start" or "stop"]() end,
     }):map("<leader>us")
     Snacks.toggle.new({
       name = "Cloak",
@@ -168,8 +177,13 @@ return {
     }):map("<leader>ul")
     Snacks.toggle.new({
       name = "Screenkey Statusline",
-      get = function() return require("screenkey").statusline_component_is_active() end,
-      set = function() require("screenkey").toggle_statusline_component() end,
+      get = function() return package.loaded["screenkey"] ~= nil and require("screenkey").statusline_component_is_active() end,
+      set = function(state)
+        local screenkey = require("screenkey")
+        if screenkey.statusline_component_is_active() ~= state then
+          screenkey.toggle_statusline_component()
+        end
+      end,
     }):map("<leader>uk")
     Snacks.toggle.new({
       name = "Brainrot",

@@ -1,5 +1,10 @@
 return {
   "ThePrimeagen/99",
+  keys = {
+    { "<leader>av", mode = "v", desc = "99: Visual Selection" },
+    { "<leader>ax", desc = "99: Stop all requests" },
+    { "<leader>as", desc = "99: Search" },
+  },
   config = function()
     local _99 = require("99")
 

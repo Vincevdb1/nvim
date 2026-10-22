@@ -1,5 +1,6 @@
 return {
   'richwomanbtc/overleaf.nvim',
+  cmd = 'Overleaf',
   config = function()
     require('overleaf').setup({
       pdf_viewer = "false" -- Disables auto opening

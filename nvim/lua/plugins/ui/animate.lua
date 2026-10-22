@@ -43,12 +43,6 @@ return {
     end,
   },
   {
-    "sphamba/smear-cursor.nvim",
-    enabled = os.getenv("TERM_PROGRAM") ~= "ghostty",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
     "rachartier/tiny-glimmer.nvim",
     event = "VeryLazy",
     priority = 10,

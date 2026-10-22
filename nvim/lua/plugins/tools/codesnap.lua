@@ -3,6 +3,7 @@ return {
     "mistricky/codesnap.nvim",
     enabled = vim.g.is_windows,
     build = "make",
+    keys = { { "<leader>us", mode = "x", desc = "CodeSnap Selection" } },
     config = function()
       require("codesnap").setup({
         has_breadcrumbs = true,
@@ -20,6 +21,7 @@ return {
     "narutoxy/silicon.lua",
     enabled = not vim.g.is_windows,
     dependencies = { "nvim-lua/plenary.nvim" },
+    keys = { { "<leader>us", mode = "v", desc = "Silicon Selection" } },
     config = function()
       require("silicon").setup({
         padHoriz = 0,
@@ -30,7 +32,7 @@ return {
 
       vim.keymap.set("v", "<leader>us", function()
         require("silicon").visualise_api({ to_clip = true })
-      end)
+      end, { desc = "Silicon Selection" })
     end,
   },
 }

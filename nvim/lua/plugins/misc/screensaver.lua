@@ -1,5 +1,6 @@
 return {
   "Root-lee/screensaver.nvim",
+  event = "VeryLazy",
   config = function()
     require("screensaver").setup({
       idle_ms = 15 * 60 * 1000,

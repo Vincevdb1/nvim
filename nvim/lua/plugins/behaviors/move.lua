@@ -1,22 +1,18 @@
 return {
   "fedepujol/move.nvim",
-  config = function()
-    require("move").setup({})
-
-    local opts = { noremap = true, silent = true }
-
+  cmd = { "MoveLine", "MoveHChar", "MoveBlock", "MoveHBlock", "MoveWord" },
+  keys = {
     -- Normal-mode commands
-    vim.keymap.set("n", "<a-j>", ":MoveLine(1)<cr>", opts)
-    vim.keymap.set("n", "<a-k>", ":MoveLine(-1)<cr>", opts)
-    vim.keymap.set("n", "<a-h>", ":movehchar(-1)<cr>", opts)
-    vim.keymap.set("n", "<a-l>", ":movehchar(1)<cr>", opts)
-    -- vim.keymap.set("n", "<leader>wf", ":MoveWord(1)<cr>", opts)
-    -- vim.keymap.set("n", "<leader>wb", ":MoveWord(-1)<cr>", opts)
+    { "<a-j>", ":MoveLine(1)<cr>", silent = true },
+    { "<a-k>", ":MoveLine(-1)<cr>", silent = true },
+    { "<a-h>", ":MoveHChar(-1)<cr>", silent = true },
+    { "<a-l>", ":MoveHChar(1)<cr>", silent = true },
 
     -- visual-mode commands
-    vim.keymap.set("v", "<a-j>", ":MoveBlock(1)<cr>", opts)
-    vim.keymap.set("v", "<a-k>", ":MoveBlock(-1)<cr>", opts)
-    vim.keymap.set("v", "<a-h>", ":movehblock(-1)<cr>", opts)
-    vim.keymap.set("v", "<a-l>", ":movehblock(1)<cr>", opts)
-  end,
+    { "<a-j>", ":MoveBlock(1)<cr>", mode = "v", silent = true },
+    { "<a-k>", ":MoveBlock(-1)<cr>", mode = "v", silent = true },
+    { "<a-h>", ":MoveHBlock(-1)<cr>", mode = "v", silent = true },
+    { "<a-l>", ":MoveHBlock(1)<cr>", mode = "v", silent = true },
+  },
+  opts = {},
 }

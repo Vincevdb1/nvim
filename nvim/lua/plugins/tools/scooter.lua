@@ -1,6 +1,11 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  cmd = "ToggleTerm",
+  keys = {
+    { "<C-;>", mode = { "n", "t" }, desc = "Toggle Bottom terminal" },
+    { "<leader>ts", mode = { "n", "v" }, desc = "Scooter" },
+  },
   config = function()
     require("toggleterm").setup()
 

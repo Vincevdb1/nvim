@@ -1,6 +1,8 @@
 return {
   {
     "barkinunal/floaterminal.nvim",
+    cmd = "Floaterminal",
+    keys = { { "<leader>tt", desc = "Toggle Floating terminal" } },
     config = function()
       require("floaterminal").setup({
         width = 0.8,

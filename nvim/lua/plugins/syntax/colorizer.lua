@@ -1,7 +1,6 @@
 return {
-    -- high-performance color highlighter
-    'norcalli/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup()
-    end,
+  -- high-performance color highlighter
+  "catgoose/nvim-colorizer.lua",
+  event = { "BufReadPre", "BufNewFile" },
+  opts = {},
 }

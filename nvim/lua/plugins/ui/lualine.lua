@@ -217,7 +217,9 @@ return {
               return require("screenkey").get_keys()
             end,
             color = { fg = "#5A5A5A" },
-            cond = hide_in_width,
+            cond = function()
+              return package.loaded["screenkey"] ~= nil and hide_in_width()
+            end,
           },
         },
         lualine_x = {

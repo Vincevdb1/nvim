@@ -9,10 +9,13 @@ return {
   {
     -- autoclose tags
     "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
   },
   {
     -- detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
+    event = { "BufReadPre", "BufNewFile" },
   },
 }
 

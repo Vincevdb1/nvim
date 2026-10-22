@@ -1,21 +1,12 @@
 return {
-  {
-    "mbbill/undotree",
-    enabled = false,
-    config = function()
-      vim.keymap.set("n", "<leader>uu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
-    end,
+  "XXiaoA/atone.nvim",
+  cmd = "Atone",
+  keys = {
+    { "<leader>uu", "<cmd>Atone toggle<cr>", desc = "Undotree" },
   },
-  {
-    "XXiaoA/atone.nvim",
-    enabled = true,
-    config = function()
-      require("atone").setup({
-        auto_attach = {
-          excluded_ft = { "neotree"}
-        }
-      })
-      vim.keymap.set("n", "<leader>uu", ":Atone toggle<CR>", { desc = "Undotree" })
-    end,
+  opts = {
+    auto_attach = {
+      excluded_ft = { "neotree" },
+    },
   },
 }
