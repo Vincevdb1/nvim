@@ -22,9 +22,6 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {
   silent = true,
 })
 
--- select all text
-vim.keymap.set("n", "<C-a>", "ggVG", opts)
-
 -- clear highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 
