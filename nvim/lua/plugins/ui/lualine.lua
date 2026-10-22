@@ -260,7 +260,8 @@ return {
         lualine_y = { 
           {
             "location",
-          }
+            fmt = vim.trim,
+          },
         },
         lualine_z = { "progress" },
       },
