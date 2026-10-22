@@ -26,6 +26,7 @@
   "lazydev.nvim": { "branch": "main", "commit": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d" },
   "leetcode.nvim": { "branch": "master", "commit": "4e8b3683940a8377379ce9398e7f329e3560b42c" },
   "lensline.nvim": { "branch": "main", "commit": "6d0beaa5548ff54b8f3d9b3195aea1369ccf62a4" },
+  "lspeek.nvim": { "branch": "main", "commit": "421f3549e43d5c69feb05b91f9775024ac02be26" },
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "27b98a54bc04d2e8649d2e701c89aec0d02c11a4" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc" },
