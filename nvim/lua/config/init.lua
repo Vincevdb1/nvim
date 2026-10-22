@@ -12,4 +12,5 @@ require("config.lazy")
 require("config.host-env")
 require("config.options")
 require("config.autocmds")
+require("scripts.diagnostics").setup()
 
