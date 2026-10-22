@@ -27,5 +27,5 @@ return {
       })
     end,
   },
-  { "AndreM222/copilot-lualine" },
+  { "AndreM222/copilot-lualine", lazy = true },
 }

@@ -45,6 +45,7 @@ return {
   {
     "sphamba/smear-cursor.nvim",
     enabled = os.getenv("TERM_PROGRAM") ~= "ghostty",
+    event = "VeryLazy",
     opts = {},
   },
   {

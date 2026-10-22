@@ -76,10 +76,4 @@ return {
       end
     end,
   },
-  {
-    "briones-gabriel/darcula-solid.nvim",
-    dependencies = {
-      "rktjmp/lush.nvim",
-    },
-  },
 }

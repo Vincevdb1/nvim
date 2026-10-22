@@ -26,7 +26,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {
 vim.keymap.set("n", "<C-a>", "ggVG", opts)
 
 -- clear highlights
-vim.keymap.set("n", "<Esc>", ":noh<CR>", opts)
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
@@ -82,7 +82,7 @@ vim.keymap.set("n", "<leader>w", ":Bdelete!<CR>", {
 -- toggle line wrapping
 vim.keymap.set("n", "<leader>cw", "<cmd>:set wrap!<CR>", { desc = "Toggle Line Wrap" })
 
--- Press jk fast to exit insert mode
+-- Press jj or kj fast to exit insert mode
 vim.keymap.set("i", "jj", "<ESC>", opts)
 vim.keymap.set("i", "kj", "<ESC>", opts)
 

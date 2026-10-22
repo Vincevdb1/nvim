@@ -6,17 +6,25 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.smartindent = true
-
 vim.opt.wrap = false
-
-vim.opt.termguicolors = true
 
 vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.scrolloff = 10
 
 vim.opt.undofile = true
+
+vim.opt.signcolumn = "yes"
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "split"
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.updatetime = 250
+vim.opt.confirm = true
 
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
@@ -52,6 +60,12 @@ vim.filetype.add({
     grm = "yacc",
     xaml = "xaml",
     axaml = "xaml",
+  },
+  filename = {
+    [".env"] = "dosini",
+  },
+  pattern = {
+    ["%.env%..*"] = "dosini",
   },
 })
 
