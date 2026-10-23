@@ -89,3 +89,24 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = false
   end,
 })
+
+-- diagnostic virtual text: same color as the severity, on a darker tint of it
+local function tint_diagnostic_virtual_text()
+  local function blend(fg, bg, alpha)
+    local function ch(c, s) return bit.band(bit.rshift(c, s), 0xff) end
+    local function mix(s) return math.floor(ch(fg, s) * alpha + ch(bg, s) * (1 - alpha) + 0.5) end
+    return string.format("#%02x%02x%02x", mix(16), mix(8), mix(0))
+  end
+  local base = vim.api.nvim_get_hl(0, { name = "Normal", link = false }).bg or 0x000000
+  for _, sev in ipairs({ "Error", "Warn", "Info", "Hint", "Ok" }) do
+    local fg = vim.api.nvim_get_hl(0, { name = "Diagnostic" .. sev, link = false }).fg
+    if fg then
+      vim.api.nvim_set_hl(0, "DiagnosticVirtualText" .. sev, { fg = fg, bg = blend(fg, base, 0.15) })
+    end
+  end
+end
+tint_diagnostic_virtual_text()
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("diagnostic_virtual_text_tint", { clear = true }),
+  callback = tint_diagnostic_virtual_text,
+})
