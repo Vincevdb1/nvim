@@ -91,6 +91,32 @@ return {
       end,
     }
 
+    -- Ports of the live preview servers (swagger-preview, prelive) that are running.
+    -- Only peeks at already loaded modules, so it never triggers a lazy load.
+    local function live_servers()
+      local servers = {}
+      local swagger = package.loaded["swagger-preview"]
+      -- server_on isn't reset when the watcher dies by itself, so check the job too
+      if swagger and swagger.server_on and vim.fn.jobwait({ swagger.server_pid }, 0)[1] == -1 then
+        table.insert(servers, "swagger:" .. swagger.port)
+      end
+      local prelive = package.loaded["prelive"]
+      if prelive and prelive._server then
+        table.insert(servers, "live:" .. prelive._server._port)
+      end
+      return servers
+    end
+
+    local live_server = {
+      function()
+        return "󰒍 " .. table.concat(live_servers(), " ")
+      end,
+      cond = function()
+        return #live_servers() > 0
+      end,
+      color = { fg = "#699854" },
+    }
+
     local function claude_state()
       local auto = package.loaded["claude-complete.auto"]
       local worker = package.loaded["claude-complete.worker"]
@@ -237,6 +263,7 @@ return {
             color = { fg = "#5A5A5A" },
             cond = hide_in_width,
           },
+          live_server,
           formatter,
           {
             "copilot",
