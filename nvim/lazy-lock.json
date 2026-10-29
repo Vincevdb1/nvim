@@ -68,6 +68,7 @@
   "screensaver.nvim": { "branch": "main", "commit": "38cf0b8a96b5f4a5e765ce32d43a416441462179" },
   "silicon.lua": { "branch": "main", "commit": "54682647a7c1c773dc4c9ab2bc309114a3b9e96f" },
   "snacks.nvim": { "branch": "main", "commit": "da230e3ca8146da4b73752daaf0a1d07d343c12d" },
+  "swagger-preview.nvim": { "branch": "master", "commit": "42999dd6ad0bbb3e6ca5e857f3fc3c12de014110" },
   "tiny-glimmer.nvim": { "branch": "main", "commit": "b35d4f7b0eaedb75ff99fa694f4d1ea2ce8ce6c8" },
   "todo-comments.nvim": { "branch": "main", "commit": "aba91f1d0d8ef9756fb9847e925b872bb8d7f67c" },
   "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
